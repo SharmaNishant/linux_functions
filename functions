@@ -1,0 +1,97 @@
+#!/bin/bash
+
+function nsysup()
+{
+	sudo apt-get clean
+	sudo apt update
+	sudo apt upgrade --assume-yes
+	sudo apt-get dist-upgrade --assume-yes
+	sudo apt-get autoremove --assume-yes
+}
+
+#usage: print-bw-single-sided print.pdf
+function print-bw-single-sided()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu "lpr -Psc-ps209 -o media=letter -o fit-to-page print_files/print"
+	ssh nsharma@cse.unl.edu "rm print_files/print"
+}
+
+#usage: print-bw-double-sided print.pdf
+function print-bw-double-sided()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/"print"
+	ssh nsharma@cse.unl.edu "lpr -Psc-ps209 -o sides=two-sided-long-edge -o media=letter -o fit-to-page print_files/print"
+	ssh nsharma@cse.unl.edu "rm print_files/print"
+}
+
+#usage: print-bw-single-sided-range print.pdf "1-5,8,10-12"
+function print-bw-single-sided-range()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu 'lpr -Psc-ps209 -o page-ranges='$2' -o media=letter -o fit-to-page print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print'
+}
+
+#usage: print-bw-double-sided-range print.pdf "1-5,8,10-12"
+function print-bw-double-sided-range()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu 'lpr -Psc-ps209 -o sides=two-sided-long-edge -o page-ranges='$2' -o media=letter -o fit-to-page print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print'
+}
+
+#usage: print-color-single-sided print.pdf 
+function print-color-single-sided()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu 'lpr -Psc-ps209c -o media=letter -o fit-to-page print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print'
+}
+
+#usage: print-color-double-sided print.pdf 
+function print-color-double-sided()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu 'lpr -Psc-ps209c -o sides=two-sided-long-edge -o media=letter -o fit-to-page print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print'
+}
+
+#usage: print-color-single-sided-range print.pdf "1-5,8,10-12"
+function print-color-single-sided-range()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu 'lpr -Psc-ps209c -o page-ranges='$2' -o media=letter -o fit-to-page print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print'
+}
+
+#usage: print-color-double-sided-range print.pdf "1-5,8,10-12"
+function print-color-double-sided-range()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh nsharma@cse.unl.edu 'lpr -Psc-ps209c -o sides=two-sided-long-edge -o page-ranges='$2' -o media=letter -o fit-to-page print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print'
+}
+
+#usage: open-to-print print.pdf 
+function open-to-print()
+{
+	scp "$1" nsharma@cse.unl.edu:print_files/print
+	ssh -Y nsharma@cse.unl.edu 'evince print_files/print'
+	ssh nsharma@cse.unl.edu 'rm print_files/print' 
+}
+
+function csessh()
+{
+	ssh cse.unl.edu -l nsharma
+}
+
+function search-web()
+{
+	local query=""
+	for var in "$@"
+	do
+    		query=$query"${var}+"
+	done
+	elinks "https://www.google.com/search?q=${query}"
+}
