@@ -1,0 +1,60 @@
+#!/bin/bash
+# Bash aliases: need customs to be sourced
+#
+# Author: Nishant Sharma <'nishants1994' at gmail>
+
+# shorthand to cd backwards
+alias     ..="cd .."
+alias    ...="cd ../.."
+alias   ....="cd ../../.."
+alias  .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# command maps
+alias r="reset"
+alias e="exit"
+alias cp="rsync -avP"
+alias nxopen="xdg-open"
+alias zotero="/opt/zotero/zotero"
+alias clion='~/.IDE/CLion/bin/clion.sh'
+
+# git related remaps
+alias gd="git diff"
+alias gdt="git difftool"
+alias gdtc="git difftool --cached"
+alias gmt="git mergetool"
+alias gfo="git fetch origin"
+alias gfod="git fetch origin develop"
+alias gmod="git merge origin/develop"
+alias grod="git rebase origin/develop -i"
+alias grb="git rebase -i"
+alias gst="git status"
+alias gstsh="git stash"
+alias gbr="git branch"
+alias gco="git checkout"
+alias gaa="git add -A"
+alias gaf="git add"
+alias gcm="git commit"
+# glg needs the following to be set 
+# git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glg="git lg"
+alias gpl="git pull"
+alias gph="git push"
+alias gphf="git push --force-with-lease"
+
+# shorthand for editing and sourcing files
+alias sbashrc="source ~/.bashrc"
+alias ebashrc="vim ~/.bashrc; sbashrc"
+alias ecustoms="vim ~/vcs/dot_files/bash/customs; sbashrc"
+alias ealias="vim ~/vcs/dot_files/bash/aliases; sbashrc"
+alias efunctions="vim ~/vcs/dot_files/bash/functions; sbashrc"
+alias evimrc="vimserv ~/.vimrc"
+alias etmuxconf="vimserv ~/.tmux.conf"
+
+# personal website on github uses jekyll. Related command
+alias website_test="cd ~/vcs/nishant_sharma && jekyll serve --host 0.0.0.0"
+
+# always launch vimserv
+alias vimserv_always="while true; do vimserv; done"
+
+alias watch_starwars="telnet towel.blinkenlights.nl"

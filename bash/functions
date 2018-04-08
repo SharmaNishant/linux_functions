@@ -1,0 +1,132 @@
+#!/bin/bash
+# this file contains black magic
+#
+# Author: Nishant Sharma <'nishants1994' at gmail>
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  sysup
+#   DESCRIPTION:  updates and upgrades ubuntu followed with an auto clean
+#-------------------------------------------------------------------------------
+sysup ()
+{
+	sudo apt-get clean
+	sudo apt update
+	sudo apt upgrade --assume-yes
+	sudo apt-get dist-upgrade --assume-yes
+	sudo apt-get autoremove --assume-yes --purge
+}
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  websearch
+#   DESCRIPTION:  opens a query on a terminal based browser
+#-------------------------------------------------------------------------------
+websearch()
+{
+	local query=""
+	for var in "$@"
+	do
+    		query=$query"${var}+"
+	done
+	elinks "https://www.google.com/search?q=${query}"
+}
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  fbr
+#   DESCRIPTION:  fetch checkout git branch (including remote branches)
+#-------------------------------------------------------------------------------
+function fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  gbd
+#   DESCRIPTION:  delete a git branch
+#-------------------------------------------------------------------------------
+function gbd() {
+  local branches branch
+  branches=$(git branch | cut -c 3-) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git branch -d $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  bdd
+#   DESCRIPTION:  branch diff from develop
+#-------------------------------------------------------------------------------
+function bdd ()
+{
+    gdt origin/develop..`git branch 2> /dev/null | sed -e '/^[^*]/d'  -e 's/* \(.*\)/\1/'` "$@"
+}	# ----------  end of function bdd  ----------
+
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  swps1
+#   DESCRIPTION:  switches terminal print status on demand
+#-------------------------------------------------------------------------------
+function swps1(){
+    if [ "$1" == "r" ] 
+    then 
+        export PS1="> \$(get_time) \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "   
+    elif [ "$1" == "s" ]
+    then
+        export PS1="> \[\033[32m\]\W\[\033[33m\]\[\033[00m\] $ "
+    elif [ "$1" == "m" ]
+    then 
+        export PS1="> $ "
+    else
+        export PS1="\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n> $ "
+   fi
+}
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  ctrl_p
+#   DESCRIPTION:  Use ctrl+p to quickly find and edit files 
+#-------------------------------------------------------------------------------
+ctrl_p() {
+    local file_name
+    file_name=$(fzf) && vimserv $file_name
+}
+bind -x '"\C-p": ctrl_p;'
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  vimserv
+#   DESCRIPTION:  always tries to open a file in a vim server tab or starts one
+#-------------------------------------------------------------------------------
+vimserv ()
+{
+    local isVim=`vim --serverlist | grep TEST`
+    if [[ -z "$isVim" ]] 
+    then
+        # if vim is not running with the server, run vim with server
+        vim --servername TEST "$@"
+    else
+        # vim server is running open the file as a tab
+        vim --servername TEST --remote-tab "$@"
+    fi
+}	# ----------  end of function vimserv  ----------
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  kill_ros
+#   DESCRIPTION:  A brutal tool to kill ROS stuff. Use with Care.
+#-------------------------------------------------------------------------------
+kill_ros ()
+{
+    for b in $(ps ax | grep ros | awk '{print $1}')
+    do
+        kill -9 $b
+    done
+}	# ----------  end of function kill_ros  ----------

@@ -1,0 +1,38 @@
+#!/bin/bash
+# customizations to bash. Also used to setup aliases and functions 
+#
+# Author: Nishant Sharma <'nishants1994' at gmail>
+
+# history updates
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+shopt -s histappend
+
+export EDITOR="vim"
+
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+get_time() {
+     date | awk '{print $4}' | cut -c 1-5
+}
+export PS1="> \$(get_time) \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+######### ONE TIME GIT SETTINGS ###############
+#
+# git config --global core.editor vimserv 
+#
+# git config --global diff.tool meld
+# git config --global difftool.prompt false
+# git config --global difftool.meld trustExitCode true
+#
+# git config --global merge.tool meld
+# git config --global mergetool.prompt false
+# git config --global mergetool.meld trustExitCode true
+#
+# git config --global user.name "Nishant Sharma"
+# git config --global user.email <email>
+#
+#  git config --global mergetool.keepBackup false
+
