@@ -32,6 +32,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/bash-support.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'romainl/Apprentice'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 " ------------------------------------------------------------------------------
 
