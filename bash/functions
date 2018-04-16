@@ -130,3 +130,27 @@ kill_ros ()
         kill -9 $b
     done
 }	# ----------  end of function kill_ros  ----------
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  ofrg
+#   DESCRIPTION:  opens a file from a search performed using grep
+#    PARAMETERS:  search term
+#-------------------------------------------------------------------------------
+ofrg ()
+{
+    echo $@
+    IFS=$'\n'
+    local search_result=($(rg -in --no-heading --color=always "$@"))
+    select search_item in "${search_result[@]}"
+    do
+        # strip color out of output
+        search_item=`echo $search_item | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`
+        local file=`echo $search_item | cut -d: -f1`
+        local line=`echo $search_item | cut -d: -f2`
+        vimserv "+$line" "$file"
+        break
+    done
+    # unset IFS for regular bash usage
+    unset IFS
+}	# ----------  end of function ofrg  ----------
