@@ -139,7 +139,6 @@ kill_ros ()
 #-------------------------------------------------------------------------------
 ofrg ()
 {
-    echo $@
     IFS=$'\n'
     local search_result=($(rg -in --no-heading --color=always "$@"))
     select search_item in "${search_result[@]}"

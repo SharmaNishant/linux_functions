@@ -17,6 +17,7 @@ alias cp="rsync -avP"
 alias nxopen="xdg-open"
 alias zotero="/opt/zotero/zotero"
 alias clion='~/.IDE/CLion/bin/clion.sh'
+alias vs="vimserv"
 
 # git related remaps
 alias gd="git diff"
