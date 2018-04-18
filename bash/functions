@@ -153,3 +153,17 @@ ofrg ()
     # unset IFS for regular bash usage
     unset IFS
 }	# ----------  end of function ofrg  ----------
+
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  get_tmux_pane_height
+#   DESCRIPTION:  
+#    PARAMETERS:  
+#       RETURNS:  
+#-------------------------------------------------------------------------------
+get_tmux_pane_height ()
+{
+    # TODO make this a real function
+    tmux display -p -t 0:1.1 '#{pane_width}x#{pane_height}'
+}	# ----------  end of function get_tmux_pane_height  ----------
