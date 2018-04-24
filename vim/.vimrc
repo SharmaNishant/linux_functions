@@ -36,6 +36,7 @@ Plug 'rhysd/vim-clang-format'
 call plug#end()
 " ------------------------------------------------------------------------------
 
+set relativenumber
 set number
 set paste
 syntax enable
