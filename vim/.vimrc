@@ -33,10 +33,11 @@ Plug 'vim-scripts/bash-support.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'romainl/Apprentice'
 Plug 'rhysd/vim-clang-format'
+Plug 'taketwo/vim-ros'
 call plug#end()
 " ------------------------------------------------------------------------------
 
-set relativenumber
+" set relativenumber
 set number
 set paste
 syntax enable

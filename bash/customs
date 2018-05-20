@@ -11,13 +11,48 @@ shopt -s histappend
 export EDITOR="vim"
 
 parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
 get_time() {
      date | awk '{print $4}' | cut -c 1-5
 }
-export PS1="> \$(get_time) \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+print_horizontal_line() {
+    printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+}
+
+#export PS1="\$(print_horizontal_line) > \$(get_time) \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+
+RESET="\[\033[0m\]"
+RED="\[\033[0;31m\]"
+GREEN="\[\033[01;32m\]"
+BLUE="\[\033[01;34m\]"
+YELLOW="\[\033[0;33m\]"
+
+function parse_git_branch_simple {
+  PS_BRANCH=''
+  PS_FILL=${PS_LINE:0:$COLUMNS}
+  if [ -d .svn ]; then
+    PS_BRANCH="(svn r$(svn info|awk '/Revision/{print $2}'))"
+    return
+  elif [ -f _FOSSIL_ -o -f .fslckout ]; then
+    PS_BRANCH="(fossil $(fossil status|awk '/tags/{print $2}')) "
+    return
+  fi
+  ref=$(git branch 2> /dev/null) || return
+  PS_BRANCH="(git $(echo "$ref" | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')) "
+}
+
+PROMPT_COMMAND=parse_git_branch_simple
+PS_LINE=`printf -- '-%.0s' {1..400}`
+PS_FILL=${PS_LINE:0:$COLUMNS}
+PS_INFO="$GREEN\!$RESET:$BLUE\w"
+PS_GIT="$YELLOW\$PS_BRANCH"
+PS_TIME="\[\033[\$((COLUMNS-10))G\] $RED[\t]"
+export PS1="\${PS_FILL}\[\033[0G\]${PS_INFO} ${PS_GIT}${PS_TIME}\n${RESET}\$ "
+
 
 ######### ONE TIME GIT SETTINGS ###############
 #
