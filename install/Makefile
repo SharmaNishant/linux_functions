@@ -150,3 +150,7 @@ setup_ripgrep:
 	cd ~/.software/ripgrep
 	cargo build --release
 	cargo install
+
+
+# notes to self
+# While install synergy from source, had to unzip files in the ext directory
