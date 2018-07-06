@@ -46,8 +46,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
-set cursorline
-hi CursorLine term=bold cterm=bold guibg=Gray20
+" set cursorline
+" hi CursorLine term=bold cterm=bold guibg=Gray20
 
 set spell
 hi clear SpellBad
