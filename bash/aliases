@@ -43,6 +43,7 @@ alias glg="git lg"
 alias gpl="git pull"
 alias gph="git push"
 alias gphf="git push --force-with-lease"
+alias gfp="git fetch --prune"
 
 # shorthand for editing and sourcing files
 alias sbashrc="source ~/.bashrc"

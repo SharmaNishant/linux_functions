@@ -44,7 +44,7 @@ function fbr() {
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
-
+bind -x '"\eb": fbr;'
 
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  gbd
@@ -96,7 +96,7 @@ function swps1(){
 #-------------------------------------------------------------------------------
 ctrl_p() {
     local file_name
-    file_name=$(fzf) && vimserv $file_name
+    file_name=$(fzf) && vim $file_name
 }
 bind -x '"\C-p": ctrl_p;'
 
