@@ -19,6 +19,7 @@
 	powerline_vim
 	powerline_tmux
 	setup_ripgrep
+	setup_hunspell
 
 all:
 	@echo "Installation of ALL targets"
@@ -151,6 +152,17 @@ setup_ripgrep:
 	cargo build --release
 	cargo install
 
+.ONESHELL:
+setup_hunspell:
+	sudo apt install g++ make autoconf \
+		automake autopoint libtool autoconf \
+		automake autopoint libtool libboost-locale-dev \
+		libboost-system-dev
+	autoreconf -vfi
+	./configure --with-ui --with-readline --with-warnings
+	make
+	sudo make install
+	sudo ldconfig
 
 # notes to self
 # While install synergy from source, had to unzip files in the ext directory

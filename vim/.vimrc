@@ -37,6 +37,9 @@ Plug 'taketwo/vim-ros'
 call plug#end()
 " ------------------------------------------------------------------------------
 
+" autosave files on focus change
+:au FocusLost * :wa
+
 " set relativenumber
 set number
 set paste
@@ -109,3 +112,4 @@ set laststatus=2
 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set noshowmode
 " ------------------------------------------------------------------------------
+
