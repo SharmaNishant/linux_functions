@@ -60,12 +60,12 @@ function gbd() {
 
 
 #---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  bdd
+#          NAME:  bfd
 #   DESCRIPTION:  branch diff from develop
 #-------------------------------------------------------------------------------
-function bdd ()
+function bfd ()
 {
-    gdt origin/develop..`git branch 2> /dev/null | sed -e '/^[^*]/d'  -e 's/* \(.*\)/\1/'` "$@"
+    gdt `git merge-base --fork-point origin/develop`
 }	# ----------  end of function bdd  ----------
 
 

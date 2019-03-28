@@ -4,14 +4,14 @@
 #
 
 .PHONY:
-	all 
-	preparations 
-	libs 
-	update 
-	upgrade 
-	graphics
-	tools
-	teamviewer
+#	all 
+#	preparations 
+#	libs 
+#	update 
+#	upgrade 
+#	graphics
+#	tools
+#	teamviewer
 	setup_bash
 	setup_vim
 	setup_tmux
@@ -56,12 +56,12 @@ media:
 tools:
 	sudo apt -y install htop meld tmux vim geany elinks
 
-teamviewer:
-	sudo apt -y install qml-module-qtquick-dialogs qml-module-qtquick-privatewidgets
-	rm -f teamviewer_amd64.deb
-	wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-	sudo dpkg -i teamviewer_amd64.deb
-	rm -f teamviewer_amd64.deb 
+#teamviewer:
+#	sudo apt -y install qml-module-qtquick-dialogs qml-module-qtquick-privatewidgets
+#	rm -f teamviewer_amd64.deb
+#	wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+#	sudo dpkg -i teamviewer_amd64.deb
+#	rm -f teamviewer_amd64.deb 
 
 setup_bash:
 	echo "# Customizations to bash" >> ~/.bashrc

@@ -34,8 +34,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'romainl/Apprentice'
 Plug 'rhysd/vim-clang-format'
 Plug 'taketwo/vim-ros'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'shime/vim-livedown'
+Plug 'edkolev/tmuxline.vim'
 call plug#end()
 " ------------------------------------------------------------------------------
+
+" Use powerline symbols for airline
+let g:airline_powerline_fonts = 1
 
 " autosave files on focus change
 :au FocusLost * :wa
@@ -63,6 +71,9 @@ highlight ColorColumn ctermbg=238
 set list
 set listchars=trail:·,tab:▸\ 
 
+" remove trailing whitespace before saving
+autocmd BufWritePre * %s/\s\+$//e
+
 set mouse=a
 
 colorscheme apprentice
@@ -70,7 +81,8 @@ colorscheme apprentice
 " expand tabs into spaces
 " ------------------------------------------------------------------------------
 set expandtab
-" turn off expandtab for make files
+" turn off expandtab for make,json files
+autocmd FileType json setlocal noexpandtab
 autocmd FileType make setlocal noexpandtab
 autocmd BufRead *Makefile setlocal noexpandtab
 " number of visual spaces per TAB
@@ -98,14 +110,24 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" ------------------------------------------------------------------------------
 
+set splitbelow
+set splitright
+
+""Max out the height of the current split
+"ctrl + w _
+""Max out the width of the current split
+"ctrl + w |
+""Normalize all split sizes, which is very handy when resizing terminal
+"ctrl + w =
+
+""Swap top/bottom or left/right split
+"Ctrl+W R
+""Break out current window into a new tabview
+"Ctrl+W T
+""Close every window in the current tabview but the current one
+"Ctrl+W o
 " ------------------------------------------------------------------------------
-" Powerline related settings
-" ------------------------------------------------------------------------------
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 " Always display the statusline in all windows
 set laststatus=2
