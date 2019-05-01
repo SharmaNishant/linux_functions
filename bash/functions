@@ -75,14 +75,14 @@ function bfd ()
 #   DESCRIPTION:  switches terminal print status on demand
 #-------------------------------------------------------------------------------
 function swps1(){
-    if [ "$1" == "r" ] 
-    then 
-        export PS1="> \$(get_time) \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "   
+    if [ "$1" == "r" ]
+    then
+        export PS1="> \$(get_time) \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
     elif [ "$1" == "s" ]
     then
         export PS1="> \[\033[32m\]\W\[\033[33m\]\[\033[00m\] $ "
     elif [ "$1" == "m" ]
-    then 
+    then
         export PS1="> $ "
     else
         export PS1="\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\n> $ "
@@ -92,7 +92,7 @@ function swps1(){
 
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  ctrl_p
-#   DESCRIPTION:  Use ctrl+p to quickly find and edit files 
+#   DESCRIPTION:  Use ctrl+p to quickly find and edit files
 #-------------------------------------------------------------------------------
 ctrl_p() {
     local file_name
@@ -108,7 +108,7 @@ bind -x '"\C-p": ctrl_p;'
 vimserv ()
 {
     local isVim=`vim --serverlist | grep TEST`
-    if [[ -z "$isVim" ]] 
+    if [[ -z "$isVim" ]]
     then
         # if vim is not running with the server, run vim with server
         vim --servername TEST "$@"
@@ -179,12 +179,37 @@ crg ()
 
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  get_tmux_pane_height
-#   DESCRIPTION:  
-#    PARAMETERS:  
-#       RETURNS:  
+#   DESCRIPTION:
+#    PARAMETERS:
+#       RETURNS:
 #-------------------------------------------------------------------------------
 get_tmux_pane_height ()
 {
     # TODO make this a real function
     tmux display -p -t 0:1.1 '#{pane_width}x#{pane_height}'
-}	# ----------  end of function get_tmux_pane_height  ----------
+}	# ----------end of function get_tmux_pane_height  ----------
+
+
+
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  download
+#   DESCRIPTION:  function that passes the arguments to aria2c command for
+#                 downloading
+#    PARAMETERS:  1. link and 2. output filename [optional]
+#       RETURNS:
+#-------------------------------------------------------------------------------
+download ()
+{
+    # If only one argument was passed, use it as the download link
+    if (( $# == 1 )); then
+        echo aria2c -x 8 -s 8 "$1"
+        aria2c -x 8 -s 8 "$1"
+    fi
+    # if two arguments were passed, use the second argument as filename
+    if (( $# > 1 )); then
+        echo aria2c -x 8 -s 8 "$1" --out="$2"
+        aria2c -x 8 -s 8 "$1" --out="$2"
+    fi
+}	# ----------  end of function download  ----------
