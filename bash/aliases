@@ -40,7 +40,7 @@ alias gco="git checkout"
 alias gaa="git add -A"
 alias gaf="git add"
 alias gcm="git commit"
-# glg needs the following to be set 
+# glg needs the following to be set
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glg="git lg"
 alias glgd="git lg origin/develop"
@@ -66,3 +66,8 @@ alias website_test="cd ~/vcs/nishant_sharma && jekyll serve --host 0.0.0.0"
 alias vimserv_always="while true; do vimserv; done"
 
 alias watch_starwars="telnet towel.blinkenlights.nl"
+
+alias whitenoise="play -n synth 24:00:00 whitenoise"
+alias pinknoise="play -n synth 24:00:00 pinknoise"
+alias brownnoise="play -n synth 24:00:00 brownnoise"
+
