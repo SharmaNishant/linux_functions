@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=WM from xsession script
+Comment=Runs the window manager defined by xsession script
+Exec=/etc/X11/Xsession
+Type=Application
