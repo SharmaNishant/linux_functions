@@ -65,7 +65,7 @@ function gbd() {
 #-------------------------------------------------------------------------------
 function bfd ()
 {
-    gdt `git merge-base --fork-point origin/develop`
+    gdt `git merge-base --fork-point origin/develop-stable`
 }	# ----------  end of function bdd  ----------
 
 

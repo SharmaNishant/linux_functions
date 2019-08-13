@@ -5,7 +5,7 @@
 
 # history updates
 export HISTCONTROL=erasedups
-export HISTSIZE=10000
+export HISTSIZE=99999
 shopt -s histappend
 
 export EDITOR="vim"

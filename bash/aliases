@@ -16,7 +16,7 @@ alias e="exit;"
 alias cp="rsync -avP"
 alias nxopen="xdg-open"
 alias zotero="/opt/zotero/zotero"
-alias clion='~/.IDE/CLion/bin/clion.sh'
+alias clion='~/.IDE/clion/bin/clion.sh'
 alias vs="vimserv"
 
 # git related remaps
@@ -43,6 +43,7 @@ alias gcm="git commit"
 # glg needs the following to be set
 # git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glg="git lg"
+alias glg1="git log -1"
 alias glgd="git lg origin/develop"
 alias gpl="git pull"
 alias gph="git push"
