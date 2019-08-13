@@ -166,3 +166,7 @@ setup_hunspell:
 
 # notes to self
 # While install synergy from source, had to unzip files in the ext directory
+#
+# Gnome-boxes
+# sudo usermod -a -G kvm $USER
+#
