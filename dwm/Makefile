@@ -10,9 +10,10 @@
 	clone_dwm
 	fix_config_mk
 	fix_config_h
+	setup_slstatus
 
 prepare:
-	apt install xorg-dev suckless-tools
+	apt install xorg-dev suckless-tools xscreensaver
 
 # this is gdm specific
 setup_xsession_desktop:
@@ -36,4 +37,11 @@ fix_config_h:
 build_and_install:
 	cd ~/vcs/dwm
 	make clean install
+
+.ONESHELL:
+setup_slstatus:
+	git clone https://git.suckless.org/slstatus ~/vcs/slstatus
+	cd ~/vcs/slstatus
+	ln -s ~/vcs/dot_files/dwm/slstatus/config.h ~/vcs/slstatus/config.h
+	make
 
