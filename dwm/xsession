@@ -34,4 +34,7 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcsii,secrets,ssh)
 export SSH_AUTH_SOCK
 export GPG_AGENT_INFO
 
-exec dwm
+while true
+do
+    dwm
+done
