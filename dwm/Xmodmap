@@ -1,0 +1,5 @@
+!
+! Make Caps_Lock Super_L
+!
+clear lock
+keysym Caps_Lock = Super_L

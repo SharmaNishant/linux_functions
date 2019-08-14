@@ -7,6 +7,7 @@
 	prepare
 	setup_xsession_desktop
 	setup_xsession
+	setup_xmodmap
 	clone_dwm
 	fix_config_mk
 	fix_config_h
@@ -21,6 +22,9 @@ setup_xsession_desktop:
 
 setup_xsession:
 	ln -s ~/vcs/dot_files/dwm/xsession ~/.xsession
+
+setup_xmodmap:
+	ln -s ~/vcs/dot_files/dwm/Xmodmap ~/.Xmodmap
 
 clone_dwm:
 	git clone git://git.suckless.org/dwm ~/vcs/dwm
