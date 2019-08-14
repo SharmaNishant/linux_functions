@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Author: Nishant Sharma <'nishants1994' at gmail>
+#
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
