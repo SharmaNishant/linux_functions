@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "web", "term", "code", "personal" };
+static const char *tags[] = { "web", "term", "code", "personal", "other" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -28,7 +28,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Google-chrome",  NULL,       NULL,       1,       0,           -1 },
-	{ "Gnome-terminal",  NULL,       NULL,      1 << 1,       0,           -1 },
+//	{ "Gnome-terminal",  NULL,       NULL,      1 | (1 << 1),       0,           -1 },
 	{ "Sublime_text",  NULL,       NULL,      1 << 2,       0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 3,       0,           -1 },
 };
@@ -97,7 +97,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,           {.v = shutdowncmd } },
+	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = shutdowncmd } },
+	{ ControlMask|ShiftMask,        XK_Print,  spawn,          SHCMD("maim -s --noopengl | xclip -selection clipboard -t image/png") },
+	{ 0,                            XK_Print,  spawn,          SHCMD("gnome-screenshot") },
 };
 
 /* button definitions */
