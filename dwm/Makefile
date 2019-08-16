@@ -11,6 +11,7 @@
 	clone_dwm
 	fix_config_mk
 	fix_config_h
+	setup_customizations
 	setup_slstatus
 
 prepare:
@@ -41,6 +42,9 @@ fix_config_h:
 build_and_install:
 	cd ~/vcs/dwm
 	make clean install
+
+setup_customizations:
+	ln -s ~/vcs/dot_files/dwm/customizations.c ~/vcs/dwm/customizations.c
 
 .ONESHELL:
 setup_slstatus:
