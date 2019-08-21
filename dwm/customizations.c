@@ -17,3 +17,26 @@ shiftview(const Arg *arg) {
 
     view(&shifted);
 }
+
+/** Function to shift the current focus and view to the left/right
+ *
+ * @param: "arg->i" stores the number of tags to shift right (positive value)
+ *          or left (negative value)
+ */
+void
+shifttagview(const Arg *arg) {
+    if(selmon->sel == NULL
+    || __builtin_popcount(selmon->tagset[selmon->seltags] & TAGMASK) != 1)
+        return;
+
+    if(arg->i > 0) // left circular shift
+        selmon->sel->tags = (selmon->sel->tags << arg->i)
+           | (selmon->sel->tags >> (LENGTH(tags) - arg->i));
+
+    else // right circular shift
+        selmon->sel->tags = selmon->sel->tags >> (- arg->i)
+           | selmon->sel->tags << (LENGTH(tags) + arg->i);
+
+    shiftview(arg);
+}
+
