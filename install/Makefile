@@ -4,11 +4,11 @@
 #
 
 .PHONY:
-#	all 
-#	preparations 
-#	libs 
-#	update 
-#	upgrade 
+#	all
+#	preparations
+#	libs
+#	update
+#	upgrade
 #	graphics
 #	tools
 #	teamviewer
@@ -20,11 +20,12 @@
 	powerline_tmux
 	setup_ripgrep
 	setup_hunspell
+	setup_peek
 
 all:
 	@echo "Installation of ALL targets"
 	make preparations libs
-	make upgrade	
+	make upgrade
 	make graphics
 	make media
 	make tools
@@ -41,7 +42,8 @@ preparations:
 	make update
 	sudo apt -y install software-properties-common build-essential \
 	checkinstall wget curl git libssl-dev apt-transport-https ca-certificates \
-	openssh-client openssh-server python-pip libevent-dev autotools-dev automake
+	openssh-client openssh-server python-pip libevent-dev autotools-dev automake \
+	cmake
 
 libs:
 	@echo "No Libraries to install: skipping libs option"
@@ -61,7 +63,7 @@ tools:
 #	rm -f teamviewer_amd64.deb
 #	wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 #	sudo dpkg -i teamviewer_amd64.deb
-#	rm -f teamviewer_amd64.deb 
+#	rm -f teamviewer_amd64.deb
 
 setup_bash:
 	echo "# Customizations to bash" >> ~/.bashrc
@@ -113,7 +115,7 @@ setup_tmux:
 	git clone https://github.com/tmux/tmux.git ~/.software/tmux
 	cd ~/.software/tmux
 	sh autogen.sh
-	./configure 
+	./configure
 	make
 	sudo make install
 
@@ -164,9 +166,19 @@ setup_hunspell:
 	sudo make install
 	sudo ldconfig
 
+.ONESHELL:
+setup_peek:
+	git clone https://github.com/phw/peek.git ~/vcs/peek
+	cd ~/vcs/peek
+	cmake
+	make
+	sudo make install
+
 # notes to self
 # While install synergy from source, had to unzip files in the ext directory
 #
 # Gnome-boxes
 # sudo usermod -a -G kvm $USER
 #
+
+
