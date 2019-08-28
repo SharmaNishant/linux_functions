@@ -52,4 +52,5 @@ setup_slstatus:
 	cd ~/vcs/slstatus
 	ln -s ~/vcs/dot_files/dwm/slstatus/config.h ~/vcs/slstatus/config.h
 	make
+	echo "update makefile and slstatus.h to compile vol.c"
 
