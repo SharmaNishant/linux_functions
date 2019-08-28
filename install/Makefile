@@ -43,7 +43,7 @@ preparations:
 	sudo apt -y install software-properties-common build-essential \
 	checkinstall wget curl git libssl-dev apt-transport-https ca-certificates \
 	openssh-client openssh-server python-pip libevent-dev autotools-dev automake \
-	cmake
+	cmake valac libgtk-3-dev libkeybinder-3.0-dev libxml2-utils gettext txt2man
 
 libs:
 	@echo "No Libraries to install: skipping libs option"
@@ -169,10 +169,12 @@ setup_hunspell:
 .ONESHELL:
 setup_peek:
 	git clone https://github.com/phw/peek.git ~/vcs/peek
+	mkdir ~/vcs/peek/build
+	cd ~/vcs/peek/build
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -DGSETTINGS_COMPILE=OFF ..
 	cd ~/vcs/peek
-	cmake
-	make
-	sudo make install
+	make package
+	sudo apt install ./peek-*-Linux.deb
 
 # notes to self
 # While install synergy from source, had to unzip files in the ext directory

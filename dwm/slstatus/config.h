@@ -58,14 +58,17 @@ static const char unknown_str[] = "n/a";
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
+ * vol_percentage      pulsevolume audio in percent    NULL
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ cpu_perc, "[CPU %s%%]", NULL    },
-	{ ram_perc, "[RAM %s%%]", NULL    },
-	{ battery_perc, "[BAT %2s%%]", "BAT0"    },
-	{ datetime, "[%s]", "%F %H:%M" },
+    /* function       format            argument */
+    { cpu_perc,       "[C %s |",        NULL         },
+    { ram_perc,       " R %s |",        NULL         },
+    { netspeed_rx,    " N %8s |",       "eno1"       },
+//    { battery_perc, " BAT %2s |",     "BAT0"       },
+    { vol_percentage, " V %s |",        NULL         },
+    { datetime,       " %s]",           "%F %H:%M"   },
 };
 

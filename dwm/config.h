@@ -26,11 +26,12 @@ static const Rule rules[] = {
      *    WM_CLASS(STRING) = instance, class
      *    WM_NAME(STRING) = title
      */
-    /* class      instance    title       tags mask     isfloating   monitor */
-    { "Google-chrome",  NULL,       NULL,       1,       0,           -1 },
-//    { "Gnome-terminal",  NULL,       NULL,      1 | (1 << 1),       0,           -1 },
-    { "Sublime_text",  NULL,       NULL,      1 << 2,       0,           -1 },
-    { "Firefox",  NULL,       NULL,       1 << 3,       0,           -1 },
+    /* class               instance    title       tags mask     isfloating   monitor */
+    { "Google-chrome",     NULL,       NULL,       1,            0,           -1 },
+//  { "Gnome-terminal",    NULL,       NULL,       1 | (1 << 1), 0,           -1 },
+    { "Sublime_text",      NULL,       NULL,       1 << 2,       0,           -1 },
+    { "Firefox",           NULL,       NULL,       1 << 3,       0,           -1 },
+    { "Peek",              NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -61,6 +62,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "gnome-terminal", NULL };
 static const char *shutdowncmd[]  = { "shutdown", "-h", "now", NULL };
+static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
+static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
+static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
 
 // patches
 #include "customizations.c"
@@ -110,6 +114,9 @@ static Key keys[] = {
     { Mod1Mask|ControlMask,             XK_Up,             shiftview,      {.i = -1 }  },
     { Mod1Mask|ControlMask|ShiftMask,   XK_Down,           shifttagview,   {.i = +1 }  },
     { Mod1Mask|ControlMask|ShiftMask,   XK_Up,             shifttagview,   {.i = -1 }  },
+    { 0,                                0x1008ff11,        spawn,          {.v = downvol } },
+    { 0,                                0x1008ff12,        spawn,          {.v = mutevol } },
+    { 0,                                0x1008ff13,        spawn,          {.v = upvol   } },
 };
 
 /* button definitions */
