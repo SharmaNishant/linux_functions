@@ -15,7 +15,7 @@
 	setup_slstatus
 
 prepare:
-	apt install xorg-dev suckless-tools xscreensaver maim xclip
+	apt install xorg-dev suckless-tools xscreensaver maim xclip xbacklight
 
 # this is gdm specific
 setup_xsession_desktop:
