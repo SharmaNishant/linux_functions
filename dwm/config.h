@@ -65,6 +65,8 @@ static const char *shutdowncmd[]  = { "shutdown", "-h", "now", NULL };
 static const char *upvol[]   = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%",     NULL };
 static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%",     NULL };
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "@DEFAULT_SINK@", "toggle",  NULL };
+static const char *upbrightness[] = { "xbacklight",   "-inc",   "5", NULL };
+static const char *downbrightness[] = { "xbacklight", "-dec",   "5", NULL };
 
 // patches
 #include "customizations.c"
@@ -127,6 +129,8 @@ static Key keys[] = {
     { 0,                                0x1008ff11,        spawn,          {.v = downvol } },
     { 0,                                0x1008ff12,        spawn,          {.v = mutevol } },
     { 0,                                0x1008ff13,        spawn,          {.v = upvol   } },
+    { 0,                                0x1008ff02,        spawn,          {.v = upbrightness   } },
+    { 0,                                0x1008ff03,        spawn,          {.v = downbrightness } },
 };
 
 /* button definitions */
