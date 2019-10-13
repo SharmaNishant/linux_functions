@@ -159,7 +159,7 @@ org ()
 #   DESCRIPTION:  opens a file in clion from a search performed using grep
 #    PARAMETERS:  search term
 #-------------------------------------------------------------------------------
-crg ()
+srg ()
 {
     IFS=$'\n'
     local search_result=($(rg -in --no-heading --color=always "$@"))
@@ -169,7 +169,7 @@ crg ()
         search_item=`echo $search_item | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`
         local file=`echo $search_item | cut -d: -f1`
         local line=`echo $search_item | cut -d: -f2`
-        clion "$file" "--line" "$line"
+        subl "$file":"$line"
         break
     done
     # unset IFS for regular bash usage

@@ -45,6 +45,8 @@ alias gcm="git commit"
 alias glg="git lg"
 alias glg1="git log -1"
 alias glgd="git lg origin/develop"
+alias grog="git log --graph --abbrev-commit --decorate --all --format=format:\"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)\""
+
 alias gpl="git pull"
 alias gph="git push"
 alias gphf="git push --force-with-lease"

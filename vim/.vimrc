@@ -1,4 +1,4 @@
-" Vim customizations (version: 8.0) 
+" Vim customizations (version: 8.0)
 "
 " Author: Nishant Sharma <'nishants1994' at gmail>
 
@@ -33,7 +33,7 @@ Plug 'vim-scripts/bash-support.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'romainl/Apprentice'
 Plug 'rhysd/vim-clang-format'
-Plug 'taketwo/vim-ros'
+"Plug 'taketwo/vim-ros'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
@@ -69,7 +69,7 @@ autocmd FileType c,cpp,h,hpp set colorcolumn=100
 highlight ColorColumn ctermbg=238
 
 set list
-set listchars=trail:·,tab:▸\ 
+set listchars=trail:·,tab:▸\
 
 " remove trailing whitespace before saving
 autocmd BufWritePre * %s/\s\+$//e
