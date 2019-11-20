@@ -10,6 +10,11 @@ shopt -s histappend
 
 export EDITOR="vim"
 
+export TIMEFORMAT='r: %R, u: %U, s: %S'
+
+# run and time the current typed command
+bind '"\C-j": "\C-atime \C-m"'
+
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }

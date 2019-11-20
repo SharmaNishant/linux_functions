@@ -213,3 +213,15 @@ download ()
         aria2c -x 8 -s 8 "$1" --out="$2"
     fi
 }	# ----------  end of function download  ----------
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  convert_to_gif
+#   DESCRIPTION:
+#    PARAMETERS:  input and output file any other ffmpeg parameters are optional
+#       RETURNS:
+#-------------------------------------------------------------------------------
+convert_to_gif ()
+{
+    ffmpeg -i $1 -vf "split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $2
+}	# ----------  end of function convert_to_gif  ----------
