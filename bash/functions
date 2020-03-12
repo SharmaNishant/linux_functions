@@ -224,4 +224,17 @@ download ()
 convert_to_gif ()
 {
     ffmpeg -i $1 -vf "split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $2
-}	# ----------  end of function convert_to_gif  ----------
+}   # ----------  end of function convert_to_gif  ----------
+
+
+#---  FUNCTION  ----------------------------------------------------------------
+#          NAME:  convert_to_mp4
+#   DESCRIPTION:
+#    PARAMETERS:  input and output file any other ffmpeg parameters are optional
+#       RETURNS:
+#-------------------------------------------------------------------------------
+convert_to_mp4 ()
+{
+    ffmpeg -i $1 -vcodec libx264 -crf 20 -acodec copy $2.mp4
+}   # ----------  end of function convert_to_gif  ----------
+

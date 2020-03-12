@@ -3,15 +3,6 @@
 " Author: Nishant Sharma <'nishants1994' at gmail>
 
 " ------------------------------------------------------------------------------
-" FIXS
-" ------------------------------------------------------------------------------
-" Fix terminal brackted mode after exiting vim
-" Link: https://unix.stackexchange.com/a/400717/172903
-set t_BE=
-set term=xterm-256color
-" ------------------------------------------------------------------------------
-
-" ------------------------------------------------------------------------------
 " Load / Install latest vim-plug plugin manager
 " ------------------------------------------------------------------------------
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -31,7 +22,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/bash-support.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'romainl/Apprentice'
+"Plug 'romainl/Apprentice'
+"Plug 'sainnhe/edge'
+Plug 'chriskempson/base16-vim'
 Plug 'rhysd/vim-clang-format'
 "Plug 'taketwo/vim-ros'
 Plug 'vim-airline/vim-airline'
@@ -57,8 +50,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
-" set cursorline
-" hi CursorLine term=bold cterm=bold guibg=Gray20
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Gray20
 
 set spell
 hi clear SpellBad
@@ -76,7 +69,12 @@ autocmd BufWritePre * %s/\s\+$//e
 
 set mouse=a
 
-colorscheme apprentice
+" for dark version
+set background=dark
+
+let g:clang_format_path = '/usr/local/bin/clang-format'
+let g:clang_format#auto_format = 1
+
 " ------------------------------------------------------------------------------
 " expand tabs into spaces
 " ------------------------------------------------------------------------------
@@ -130,8 +128,8 @@ set splitright
 " ------------------------------------------------------------------------------
 
 " Always display the statusline in all windows
-set laststatus=2
+"set laststatus=2
 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode
+"set noshowmode
 " ------------------------------------------------------------------------------
 

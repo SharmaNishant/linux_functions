@@ -60,8 +60,8 @@ alias ebashrc="vim ~/.bashrc; sbashrc"
 alias ecustoms="vim ~/vcs/dot_files/bash/customs; sbashrc"
 alias ealias="vim ~/vcs/dot_files/bash/aliases; sbashrc"
 alias efunctions="vim ~/vcs/dot_files/bash/functions; sbashrc"
-alias evimrc="vimserv ~/.vimrc"
-alias etmuxconf="vimserv ~/.tmux.conf"
+alias evimrc="vim ~/.vimrc"
+alias etmuxconf="vim ~/.tmux.conf"
 
 # personal website on github uses jekyll. Related command
 alias website_test="cd ~/vcs/nishant_sharma && jekyll serve --host 0.0.0.0"
