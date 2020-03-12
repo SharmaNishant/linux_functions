@@ -42,7 +42,7 @@ preparations:
 	make update
 	sudo apt -y install software-properties-common build-essential \
 	checkinstall wget curl git libssl-dev apt-transport-https ca-certificates \
-	openssh-client openssh-server python-pip libevent-dev autotools-dev automake \
+	openssh-client openssh-server python3-pip libevent-dev autotools-dev automake \
 	cmake valac libgtk-3-dev libkeybinder-3.0-dev libxml2-utils gettext txt2man
 
 libs:
