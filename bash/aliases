@@ -19,7 +19,6 @@ alias cp="rsync -avP --copy-links"
 alias nxopen="xdg-open"
 alias zotero="/opt/zotero/zotero"
 alias clion='~/.IDE/clion/bin/clion.sh'
-alias vs="vimserv"
 
 # git related remaps
 alias gd="git diff"
@@ -68,9 +67,6 @@ alias etmuxconf="vim ~/.tmux.conf"
 
 # personal website on github uses jekyll. Related command
 alias website_test="cd ~/vcs/nishant_sharma && jekyll serve --host 0.0.0.0"
-
-# always launch vimserv
-alias vimserv_always="while true; do vimserv; done"
 
 alias watch_starwars="telnet towel.blinkenlights.nl"
 

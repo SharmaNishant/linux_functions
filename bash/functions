@@ -100,25 +100,6 @@ ctrl_p() {
 }
 bind -x '"\C-p": ctrl_p;'
 
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  vimserv
-#   DESCRIPTION:  always tries to open a file in a vim server tab or starts one
-#-------------------------------------------------------------------------------
-vimserv ()
-{
-    local isVim=`vim --serverlist | grep TEST`
-    if [[ -z "$isVim" ]]
-    then
-        # if vim is not running with the server, run vim with server
-        vim --servername TEST "$@"
-    else
-        # vim server is running open the file as a tab
-        vim --servername TEST --remote-tab "$@"
-    fi
-}	# ----------  end of function vimserv  ----------
-
-
 #---  FUNCTION  ----------------------------------------------------------------
 #          NAME:  kill_ros
 #   DESCRIPTION:  A brutal tool to kill ROS stuff. Use with Care.
@@ -147,7 +128,7 @@ org ()
         search_item=`echo $search_item | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"`
         local file=`echo $search_item | cut -d: -f1`
         local line=`echo $search_item | cut -d: -f2`
-        vimserv "+$line" "$file"
+        nvim "+$line" "$file"
         break
     done
     # unset IFS for regular bash usage
