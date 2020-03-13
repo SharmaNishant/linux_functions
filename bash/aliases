@@ -57,7 +57,7 @@ alias gfp="git fetch --prune"
 alias grh="git reset --hard"
 
 # shorthand for editing and sourcing files
-alias vim=nvim
+alias vim="nvim"
 alias sbashrc="source ~/.bashrc"
 alias ebashrc="vim ~/.bashrc; sbashrc"
 alias ecustoms="vim ~/vcs/dot_files/bash/customs; sbashrc"

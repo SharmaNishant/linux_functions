@@ -1,6 +1,6 @@
 " ================ General Config ====================
 set number                          " Line numbers are good
-set paste                           " Paste a test of stream
+"set paste                           " Paste a test of stream
 
 set cursorline                      " Highlight the line the cursor is on
 " hi CursorLine term=bold cterm=bold guibg=Gray20
@@ -37,6 +37,8 @@ set nowrap                          " Don't wrap lines
 set linebreak                       " Wrap lines at convenient points
 set ruler
 
+set splitbelow
+set splitright
 
 " Display tabs and trailing spaces visually
 set list listchars=trail:·,tab:┊\ ,extends:>,precedes:<,nbsp:·
