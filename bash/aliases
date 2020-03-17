@@ -63,6 +63,7 @@ alias ecustoms="vim ~/vcs/dot_files/bash/customs; sbashrc"
 alias ealias="vim ~/vcs/dot_files/bash/aliases; sbashrc"
 alias efunctions="vim ~/vcs/dot_files/bash/functions; sbashrc"
 alias evimrc="vim ~/.vimrc"
+alias envimrc="nvim ~/.config/nvim"
 alias etmuxconf="vim ~/.tmux.conf"
 
 # personal website on github uses jekyll. Related command

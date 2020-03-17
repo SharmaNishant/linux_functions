@@ -38,13 +38,13 @@ fix_config_mk:
 fix_config_h:
 	ln -s ~/vcs/dot_files/dwm/config.h ~/vcs/dwm/config.h
 
+setup_customizations:
+	ln -s ~/vcs/dot_files/dwm/customizations.c ~/vcs/dwm/customizations.c
+
 .ONESHELL:
 build_and_install:
 	cd ~/vcs/dwm
 	make clean install
-
-setup_customizations:
-	ln -s ~/vcs/dot_files/dwm/customizations.c ~/vcs/dwm/customizations.c
 
 .ONESHELL:
 setup_slstatus:
@@ -53,4 +53,7 @@ setup_slstatus:
 	ln -s ~/vcs/dot_files/dwm/slstatus/config.h ~/vcs/slstatus/config.h
 	make
 	echo "update makefile and slstatus.h to compile vol.c"
+
+setup_brightness_control:
+	cp ~/vcs/dot_files/dwm/xorg.conf /etc/X11/
 
