@@ -43,7 +43,8 @@ preparations:
 	sudo apt -y install software-properties-common build-essential \
 	checkinstall wget curl git libssl-dev apt-transport-https ca-certificates \
 	openssh-client openssh-server python3-pip libevent-dev autotools-dev automake \
-	cmake valac libgtk-3-dev libkeybinder-3.0-dev libxml2-utils gettext txt2man
+	cmake valac libgtk-3-dev libkeybinder-3.0-dev libxml2-utils gettext txt2man \
+	ninja-build libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
 
 libs:
 	@echo "No Libraries to install: skipping libs option"
@@ -108,6 +109,13 @@ setup_vim:
 	--enable-fail-if-missing
 	# compile and install
 	make && sudo make install
+
+.ONESHELL:
+setup_neovim:
+	git clone https://github.com/neovim/neovim ~/.software/neovim
+	cd ~/.software/neovim
+	make CMAKE_BUILD_TYPE=Release
+	sudo make install
 
 .ONESHELL:
 setup_tmux:
