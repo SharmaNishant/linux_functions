@@ -32,6 +32,7 @@ static const Rule rules[] = {
     { "Sublime_text",      NULL,       NULL,       1 << 2,       0,           -1 },
     { "Firefox",           NULL,       NULL,       1 << 3,       0,           -1 },
     { "Peek",              NULL,       NULL,       0,            1,           -1 },
+    { "csgo_linux64",      NULL,       NULL,       1 << 4,       1,           -1 },
 };
 
 /* layout(s) */
