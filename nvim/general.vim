@@ -33,7 +33,7 @@ set diffopt+=vertical               " prefer vertical diffs
 " set shortmess=OtI                   " disable start message
 :au FocusLost * :wa                 " autosave files on focus change
 syntax enable
-set nowrap                          " Don't wrap lines
+" set nowrap                          " Don't wrap lines
 set linebreak                       " Wrap lines at convenient points
 set ruler
 

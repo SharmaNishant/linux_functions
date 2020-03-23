@@ -1,7 +1,7 @@
 " ------------------------------------------------------------------------------
 " Plugins will be downloaded under the specified directory.
 " ------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " FZF
 " Plugin outside ~/.vim/plugged with post-update hook
