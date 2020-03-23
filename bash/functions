@@ -4,10 +4,9 @@
 # Author: Nishant Sharma <'nishants1994' at gmail>
 
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  nsysup
-#   DESCRIPTION:  updates and upgrades ubuntu followed with an auto clean
-#-------------------------------------------------------------------------------
+################################################################################
+#                       SYSTEM UPDATE                                          #
+################################################################################
 nsysup ()
 {
 	sudo apt-get clean
@@ -17,63 +16,9 @@ nsysup ()
 	sudo apt-get autoremove --assume-yes --purge
 }
 
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  websearch
-#   DESCRIPTION:  opens a query on a terminal based browser
-#-------------------------------------------------------------------------------
-websearch()
-{
-	local query=""
-	for var in "$@"
-	do
-    		query=$query"${var}+"
-	done
-	elinks "https://www.google.com/search?q=${query}"
-}
-
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  fbr
-#   DESCRIPTION:  fetch checkout git branch (including remote branches)
-#-------------------------------------------------------------------------------
-function fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-bind -x '"\eb": fbr;'
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  gbd
-#   DESCRIPTION:  delete a git branch
-#-------------------------------------------------------------------------------
-function gbd() {
-  local branches branch
-  branches=$(git branch | cut -c 3-) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git branch -d $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-}
-
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  bfd
-#   DESCRIPTION:  branch diff from develop
-#-------------------------------------------------------------------------------
-function bfd ()
-{
-    gdt `git merge-base --fork-point origin/develop-stable`
-}	# ----------  end of function bdd  ----------
-
-
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  swps1
-#   DESCRIPTION:  switches terminal print status on demand
-#-------------------------------------------------------------------------------
+################################################################################
+#                       TERMINAL UTILITIES                                     #
+################################################################################
 function swps1(){
     if [ "$1" == "r" ]
     then
@@ -90,34 +35,82 @@ function swps1(){
 }
 
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  ctrl_p
-#   DESCRIPTION:  Use ctrl+p to quickly find and edit files
-#-------------------------------------------------------------------------------
+
 ctrl_p() {
     local file_name
     file_name=$(fzf) && vim $file_name
 }
 bind -x '"\C-p": ctrl_p;'
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  kill_ros
-#   DESCRIPTION:  A brutal tool to kill ROS stuff. Use with Care.
-#-------------------------------------------------------------------------------
+
+
 kill_ros ()
 {
     for b in $(ps ax | grep ros | awk '{print $1}')
     do
         kill -9 $b
     done
-}	# ----------  end of function kill_ros  ----------
+}
 
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  org
-#   DESCRIPTION:  opens a file from a search performed using grep
-#    PARAMETERS:  search term
-#-------------------------------------------------------------------------------
+websearch()
+{
+	local query=""
+	for var in "$@"
+	do
+    		query=$query"${var}+"
+	done
+	elinks "https://www.google.com/search?q=${query}"
+}
+
+
+download ()
+{
+    # If only one argument was passed, use it as the download link
+    if (( $# == 1 )); then
+        echo aria2c -x 8 -s 8 "$1"
+        aria2c -x 8 -s 8 "$1"
+    fi
+    # if two arguments were passed, use the second argument as filename
+    if (( $# > 1 )); then
+        echo aria2c -x 8 -s 8 "$1" --out="$2"
+        aria2c -x 8 -s 8 "$1" --out="$2"
+    fi
+}
+
+
+################################################################################
+#                            GIT RELATED                                       #
+################################################################################
+
+function fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+bind -x '"\eb": fbr;'
+
+
+function gbd() {
+  local branches branch
+  branches=$(git branch | cut -c 3-) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git branch -d $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+
+function bfd ()
+{
+    gdt `git merge-base --fork-point origin/develop-stable`
+}
+
+
+################################################################################
+#                         SEARCH AND OPEN FILES                                #
+################################################################################
 org ()
 {
     IFS=$'\n'
@@ -133,13 +126,9 @@ org ()
     done
     # unset IFS for regular bash usage
     unset IFS
-}	# ----------  end of function ofrg  ----------
+}
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  crg
-#   DESCRIPTION:  opens a file in clion from a search performed using grep
-#    PARAMETERS:  search term
-#-------------------------------------------------------------------------------
+
 srg ()
 {
     IFS=$'\n'
@@ -155,67 +144,51 @@ srg ()
     done
     # unset IFS for regular bash usage
     unset IFS
-}	# ----------  end of function ofrg  ----------
+}
 
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  get_tmux_pane_height
-#   DESCRIPTION:
-#    PARAMETERS:
-#       RETURNS:
-#-------------------------------------------------------------------------------
-get_tmux_pane_height ()
-{
-    # TODO make this a real function
-    tmux display -p -t 0:1.1 '#{pane_width}x#{pane_height}'
-}	# ----------end of function get_tmux_pane_height  ----------
+################################################################################
+#                         FFMPEG UTILS                                         #
+################################################################################
 
-
-
-
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  download
-#   DESCRIPTION:  function that passes the arguments to aria2c command for
-#                 downloading
-#    PARAMETERS:  1. link and 2. output filename [optional]
-#       RETURNS:
-#-------------------------------------------------------------------------------
-download ()
-{
-    # If only one argument was passed, use it as the download link
-    if (( $# == 1 )); then
-        echo aria2c -x 8 -s 8 "$1"
-        aria2c -x 8 -s 8 "$1"
-    fi
-    # if two arguments were passed, use the second argument as filename
-    if (( $# > 1 )); then
-        echo aria2c -x 8 -s 8 "$1" --out="$2"
-        aria2c -x 8 -s 8 "$1" --out="$2"
-    fi
-}	# ----------  end of function download  ----------
-
-
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  convert_to_gif
-#   DESCRIPTION:
-#    PARAMETERS:  input and output file any other ffmpeg parameters are optional
-#       RETURNS:
-#-------------------------------------------------------------------------------
 convert_to_gif ()
 {
     ffmpeg -i $1 -vf "split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $2
 }   # ----------  end of function convert_to_gif  ----------
 
 
-#---  FUNCTION  ----------------------------------------------------------------
-#          NAME:  convert_to_mp4
-#   DESCRIPTION:
-#    PARAMETERS:  input and output file any other ffmpeg parameters are optional
-#       RETURNS:
-#-------------------------------------------------------------------------------
 convert_to_mp4 ()
 {
     ffmpeg -i $1 -vcodec libx264 -crf 20 -acodec copy $2.mp4
-}   # ----------  end of function convert_to_gif  ----------
+}
 
+
+################################################################################
+#                          SCREEN RECORD UTILITIES                             #
+################################################################################
+
+## FORMAT: SIZE(x,y) SCREEN OFFSET(x,y)
+get_area_drawn_rectangle ()
+{
+    imed=$(mktemp -u -p /dev/shm).png &&\
+    import "$imed" &>/dev/null &&\
+    #extract pixel dimensions form file
+    size_x=$(identify "$imed" | awk -F' ' '{print $3}' | awk -F'x' '{print $1}') &&\
+    size_y=$(identify "$imed" | awk -F' ' '{print $3}' | awk -F'x' '{print $2}') &&\
+    pos_x=$(identify "$imed" | awk -F'+' '{print $2}') &&\
+    pos_y=$(identify "$imed" | awk -F'+' '{print $3}' | awk '{print $1}') &&\
+    #and remove it
+    rm -f "$imed" &&\
+    echo "${size_x} ${size_y} ${pos_x} ${pos_y}"
+}
+
+record_gif ()
+{
+    get_rect=($(get_area_drawn_rectangle))
+    temp_ogv=$(mktemp -u -p /dev/shm).ogv
+    recordmydesktop -o ${temp_ogv} --fps 20 --no-sound -x ${get_rect[2]} \
+        -y ${get_rect[3]} --width ${get_rect[0]} --height ${get_rect[1]} \
+        --channels 1 --freq 22050 --v_quality 63 --workdir '/dev/shm/' \
+        --stop-shortcut Mod4+s
+    convert_to_gif ${temp_ogv} $1
+}
