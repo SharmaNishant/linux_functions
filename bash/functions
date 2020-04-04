@@ -38,7 +38,7 @@ function swps1(){
 
 ctrl_p() {
     local file_name
-    file_name=$(fzf) && vim $file_name
+    file_name=$(fzf) && echo "vim ${file_name}" | writecmd
 }
 bind -x '"\C-p": ctrl_p;'
 
