@@ -11,6 +11,7 @@ autocmd FileType h set colorcolumn=100
 autocmd FileType hpp set colorcolumn=100
 autocmd FileType bzl set colorcolumn=100
 autocmd FileType vim set colorcolumn=100
+autocmd FileType markdown set colorcolumn=100
 highlight ColorColumn ctermbg=238
 
 set backspace=indent,eol,start      " Allow backspace in insert mode
