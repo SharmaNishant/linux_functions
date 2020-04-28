@@ -121,7 +121,7 @@ org ()
     local file
     local line
     local search_result
-    search_result="$(rg -in --no-heading --color=always "$@")"
+    search_result=($(rg -in --no-heading --color=always "$@"))
     select search_item in "${search_result[@]}"
     do
         # strip color out of output
@@ -142,7 +142,7 @@ srg ()
     local file
     local line
     local search_result
-    search_result="$(rg -in --no-heading --color=always "$@")"
+    search_result=($(rg -in --no-heading --color=always "$@"))
     select search_item in "${search_result[@]}"
     do
         # strip color out of output
