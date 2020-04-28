@@ -189,12 +189,12 @@ get_area_drawn_rectangle ()
     pos_y="$(identify "$imed" | awk -F'+' '{print $3}' | awk '{print $1}')" &&\
     #and remove it
     rm -f "$imed" &&\
-    echo "${size_x} ${size_y} ${pos_x} ${pos_y}"
+    echo "${size_x}" "${size_y}" "${pos_x}" "${pos_y}"
 }
 
 record_gif ()
 {
-    get_rect="$(get_area_drawn_rectangle)"
+    get_rect=($(get_area_drawn_rectangle))
     temp_ogv="$(mktemp -u -p /dev/shm)".ogv
     recordmydesktop -o "${temp_ogv}" --fps 20 --no-sound -x "${get_rect[2]}" \
         -y "${get_rect[3]}" --width "${get_rect[0]}" --height "${get_rect[1]}" \
