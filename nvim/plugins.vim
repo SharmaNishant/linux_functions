@@ -17,7 +17,9 @@ Plug 'romainl/Apprentice'
 Plug 'morhetz/gruvbox'
 Plug 'blueshirts/darcula'
 
-"
+" multicursors
+Plug 'terryma/vim-multiple-cursors'
+
 
 Plug 'rhysd/vim-clang-format'
 " Plug 'taketwo/vim-ros'
