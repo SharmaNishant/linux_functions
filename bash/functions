@@ -42,7 +42,6 @@ ctrl_p () {
 bind -x '"\C-p": ctrl_p;'
 
 
-
 kill_ros () {
     for b in $(pgrep ros)
     do
@@ -98,6 +97,14 @@ fbr () {
 }
 bind -x '"\eb": fbr;'
 
+fetch_local_branch () {
+  local branches branch
+  branches=$(git branch | cut -c 3-) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
+}
+bind -x '"\es": fetch_local_branch;'
 
 gbd () {
   local branches branch

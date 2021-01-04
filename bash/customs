@@ -97,5 +97,6 @@ export LESS_TERMCAP_us=$'\E[01;36m'
 # git config --global user.name "Nishant Sharma"
 # git config --global user.email <email>
 #
-#  git config --global mergetool.keepBackup false
+# git config --global mergetool.keepBackup false
+# git config --global pull.ff only
 
