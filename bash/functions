@@ -107,6 +107,13 @@ gbd () {
   git branch -d "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
 }
 
+gbD () {
+  local branches branch
+  branches=$(git branch | cut -c 3-) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git branch -D "$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")"
+}
 
 bfd () {
     gdt "$(git merge-base --fork-point origin/develop-stable)"

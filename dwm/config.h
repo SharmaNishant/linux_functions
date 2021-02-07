@@ -19,7 +19,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "web", "term", "code", "personal", "other" };
+static const char *tags[] = { "web", "code", "term", "personal", "other" };
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -29,10 +29,11 @@ static const Rule rules[] = {
     /* class               instance    title       tags mask     isfloating   monitor */
     { "Google-chrome",     NULL,       NULL,       1,            0,           -1 },
 //  { "Gnome-terminal",    NULL,       NULL,       1 | (1 << 1), 0,           -1 },
-    { "Sublime_text",      NULL,       NULL,       1 << 2,       0,           -1 },
+    { "Sublime_text",      NULL,       NULL,       1 << 1,       0,           -1 },
     { "Firefox",           NULL,       NULL,       1 << 3,       0,           -1 },
     { "Peek",              NULL,       NULL,       0,            1,           -1 },
-    { "csgo_linux64",      NULL,       NULL,       1 << 4,       1,           -1 },
+    { "Steam",             NULL,       NULL,       1 << 4,       0,           -1 },
+    { "csgo_linux64",      NULL,       NULL,       1 << 4,       0,           -1 },
 };
 
 /* layout(s) */
