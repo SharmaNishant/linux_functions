@@ -1,7 +1,9 @@
 /* See LICENSE file for copyright and license details. */
 
+// clang-format off
+
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -84,6 +86,8 @@ static Key keys[] = {
     { MODKEY,                           XK_d,              incnmaster,     {.i = -1 } },
     { MODKEY,                           XK_bracketleft,    setmfact,       {.f = -0.05} },
     { MODKEY,                           XK_bracketright,   setmfact,       {.f = +0.05} },
+    {MODKEY | ShiftMask,                XK_bracketleft,    setcfact,       {.f = -0.25}},
+    {MODKEY | ShiftMask,                XK_bracketright,   setcfact,       {.f = +0.25}},
     { MODKEY,                           XK_Return,         zoom,           {0} },
     { MODKEY,                           XK_Tab,            view,           {0} },
     { Mod1Mask,                         XK_Tab,            view,           {0} },
@@ -114,6 +118,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,                 XK_s,              spawn,          {.v = shutdowncmd } },
     { ControlMask|ShiftMask,            XK_Print,          spawn,          SHCMD("maim -s --noopengl | xclip -selection clipboard -t image/png") },
     { 0,                                XK_Print,          spawn,          SHCMD("gnome-screenshot") },
+    {ControlMask,                       XK_Print,          spawn,          SHCMD("gnome-screenshot -a")},
     { MODKEY,                           XK_Up,             focusstack,     {.i = +1 }  },
     { MODKEY,                           XK_Down,           focusstack,     {.i = -1 }  },
     { MODKEY|ShiftMask,                 XK_Up,             shiftview,      {.i = -1 }  },
