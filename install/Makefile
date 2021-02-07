@@ -72,6 +72,7 @@ setup_bash:
 	echo "source ~/vcs/dot_files/bash/aliases" >> ~/.bashrc
 	echo "source ~/vcs/dot_files/bash/functions" >> ~/.bashrc
 	@echo "Setting up links to vimrc and tmux.conf"
+	ln -s ~/vcs/dot_files/nvim ~/.config/nvim
 	ln -s ~/vcs/dot_files/vim/.vimrc ~/.vimrc
 	ln -s ~/vcs/dot_files/tmux/.tmux.conf ~/.tmux.conf
 
