@@ -86,8 +86,9 @@ static Key keys[] = {
     { MODKEY,                           XK_d,              incnmaster,     {.i = -1 } },
     { MODKEY,                           XK_bracketleft,    setmfact,       {.f = -0.05} },
     { MODKEY,                           XK_bracketright,   setmfact,       {.f = +0.05} },
-    {MODKEY | ShiftMask,                XK_bracketleft,    setcfact,       {.f = -0.25}},
-    {MODKEY | ShiftMask,                XK_bracketright,   setcfact,       {.f = +0.25}},
+    { MODKEY|ShiftMask,                 XK_bracketleft,    setcfact,       {.f = -0.05} },
+    { MODKEY|ShiftMask,                 XK_bracketright,   setcfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,                 XK_equal,          setcfact,       {.f =  0.00} },
     { MODKEY,                           XK_Return,         zoom,           {0} },
     { MODKEY,                           XK_Tab,            view,           {0} },
     { Mod1Mask,                         XK_Tab,            view,           {0} },
@@ -112,10 +113,10 @@ static Key keys[] = {
     TAGKEYS(                            XK_7,                              6)
     TAGKEYS(                            XK_8,                              7)
     TAGKEYS(                            XK_9,                              8)
-    { MODKEY|ShiftMask,                 XK_q,              quit,           {0} },
+    { MODKEY|ShiftMask,                 XK_r,              quit,           {0} },
     { Mod1Mask|ControlMask,             XK_l,              spawn,          SHCMD("xscreensaver-command --lock") },
     { MODKEY,                           XK_l,              spawn,          SHCMD("xscreensaver-command --lock") },
-    { MODKEY|ShiftMask,                 XK_s,              spawn,          {.v = shutdowncmd } },
+    { MODKEY|ShiftMask,                 XK_q,              spawn,          {.v = shutdowncmd } },
     { ControlMask|ShiftMask,            XK_Print,          spawn,          SHCMD("maim -s --noopengl | xclip -selection clipboard -t image/png") },
     { 0,                                XK_Print,          spawn,          SHCMD("gnome-screenshot") },
     {ControlMask,                       XK_Print,          spawn,          SHCMD("gnome-screenshot -a")},
