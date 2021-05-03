@@ -29,10 +29,10 @@ static const Rule rules[] = {
      *    WM_NAME(STRING) = title
      */
     /* class               instance    title       tags mask     isfloating   monitor */
-    { "Google-chrome",     NULL,       NULL,       1,            0,           -1 },
+    { "Google-chrome",     NULL,       NULL,       1 << 3,       0,           -1 },
 //  { "Gnome-terminal",    NULL,       NULL,       1 | (1 << 1), 0,           -1 },
     { "Sublime_text",      NULL,       NULL,       1 << 1,       0,           -1 },
-    { "Firefox",           NULL,       NULL,       1 << 3,       0,           -1 },
+    { "Firefox",           NULL,       NULL,       1,            0,           -1 },
     { "Peek",              NULL,       NULL,       0,            1,           -1 },
     { "Steam",             NULL,       NULL,       1 << 4,       0,           -1 },
     { "csgo_linux64",      NULL,       NULL,       1 << 4,       0,           -1 },
